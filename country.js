@@ -17,7 +17,6 @@ const language = document.querySelector('.language');
 fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
 .then((res) => res.json())
 .then(([country])=>{
-    console.log(country);
     flagImg.src = country.flags.svg;
     countryNameElement.innerText = country.name.common;
     population.innerText = country.population.toLocaleString('en-IN');

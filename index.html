@@ -12,12 +12,25 @@
 <body>
     <header class="header">
         <div class="header-content">
-            <h2 class="title">Where in the world?</h2>
+            <h2 class="title"><a href="/project/03_CountriesAPI/index.html">Where in the world?</a></h2>
             <p><i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark Mode</p>
         </div>
     </header>
     <main>
-        <div></div>
+        <div class="search-filter-container">
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search for a Country...">
+            </div>
+            <select class="filter-by-region">
+                <option hidden>Filter By Region</option>
+                <option value="Africa">Africa</option>
+                <option value="America">America</option>
+                <option value="Asia">Asia</option>
+                <option value="Europe">Europe</option>
+                <option value="Oceania">Oceania</option>
+            </select>
+        </div>
         <div class="countries-container"></div>
     </main>
 </body>

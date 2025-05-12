@@ -16,6 +16,7 @@
     margin-top: 32px;
 }
 .country-details img{
+    border: 1px solid #ddd;
     width: 40%;
 }
 .details-text{

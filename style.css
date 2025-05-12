@@ -16,6 +16,9 @@ a{
     box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
     padding-inline: 24px;
 }
+.header-content h2 a{
+    cursor: pointer;
+}
 .header-content{
     display: flex;
     justify-content: space-between;
@@ -27,8 +30,8 @@ a{
     font-weight: 800;
 }
 .countries-container{
-    max-width: 1200px;
     margin-inline: auto;
+    max-width: 1200px;
     margin-top: 16px;
     display: flex;
     gap: 16px;
@@ -61,9 +64,56 @@ a{
 .card-text p{
     margin-block: 8px;
 }
-
+.search-filter-container{
+    max-width: 1200px;
+    margin-inline: auto;
+    margin-top: 16px;
+    margin-bottom: 48px;
+    display: flex;
+    justify-content: space-between;
+}
+.search-filter-container select{
+    width: 200px;
+}
+.search-container{
+    box-shadow: 0 0 8px 0 rgba(0,0,0,0.15);
+    border-radius: 4px;
+    max-width: 350px;
+    width: 100%;
+    padding-left: 24px;
+    color: #999;
+    overflow: hidden;
+}
+.search-container input{
+    border: none;
+    outline: none;
+    padding: 16px;
+}
+.search-container input::placeholder{
+    color: #999;
+}
+.filter-by-region{
+    width: 200px;
+    padding: 16px;
+    border: none;
+    outline: none; 
+    box-shadow: 0 0 8px 0 rgba(0,0,0,0.15);
+    border-radius: 4px;  
+}
 @media(max-width:768px){
     .countries-container{
         justify-content: center;
+    }
+    .title{
+        font-size: 16px;
+    }
+    .header-content p{
+        font-size: 12px;
+    }
+    .search-filter-container{
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        gap: 24px;
     }
 }
