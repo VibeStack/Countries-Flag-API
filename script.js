@@ -1,5 +1,9 @@
 const countriesContainer = document.querySelector(".countries-container");
 const searchFilterContainer = document.querySelector('.search-filter-container select');
+const searchInput = document.querySelector('.search-container');
+const themeChager = document.querySelector('.theme-changer');
+let allCountriesData = '';
+
 
 function renderCountries(data){
     countriesContainer.innerText = "";
@@ -22,7 +26,10 @@ function renderCountries(data){
 
 fetch("https://restcountries.com/v3.1/all")
   .then((res) => res.json())
-  .then(renderCountries);
+  .then((data)=>{
+    renderCountries(data);
+    allCountriesData = data;
+  });
 
 
 const filterByRegion = document.querySelector('.filter-by-region');
@@ -33,3 +40,19 @@ filterByRegion.addEventListener('change',(e)=>{
   .then(renderCountries);
 })
 
+searchInput.addEventListener('input',(e)=>{
+    console.log(e.target.value);
+    const filteredCountries = allCountriesData.filter((country)=> country.name.common.toLowerCase().includes(e.target.value.toLowerCase()));
+    renderCountries(filteredCountries);
+})
+
+themeChager.addEventListener('click',()=>{
+    document.body.classList.toggle('dark');
+    const classExist = document.body.getAttribute('class');
+    if(classExist=='dark'){
+        themeChager.innerHTML = '<i class="fa-solid fa-sun"></i>&nbsp;&nbsp;Light Mode';
+    }
+    else{
+        themeChager.innerHTML = '<i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark Mode';
+    }
+})
