@@ -13,6 +13,11 @@ const topLevelDomain = document.querySelector('.top-level-domain');
 const currencies = document.querySelector('.currencies');
 const language = document.querySelector('.language');
 
+const themeChager = document.querySelector('.theme-changer');
+if(localStorage.isDark=='true'){
+    document.body.classList.add('dark');
+    themeChager.innerHTML = '<i class="fa-solid fa-sun"></i>&nbsp;&nbsp;Light Mode';
+}
 
 fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
 .then((res) => res.json())
@@ -56,3 +61,20 @@ fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
         });
     }
 })
+
+themeChager.addEventListener('click',()=>{
+    document.body.classList.toggle('dark');
+
+    const classExist = document.body.getAttribute('class');
+    if(classExist=='dark'){
+        themeChager.innerHTML = '<i class="fa-solid fa-sun"></i>&nbsp;&nbsp;Light Mode';
+        localStorage.setItem('isDark',true);
+    }
+    else{
+        themeChager.innerHTML = '<i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark Mode';
+        localStorage.setItem('isDark',false);
+    }
+})
+
+
+

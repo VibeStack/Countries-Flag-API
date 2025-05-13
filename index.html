@@ -22,14 +22,20 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" placeholder="Search for a Country...">
             </div>
-            <select class="filter-by-region">
-                <option hidden>Filter By Region</option>
-                <option value="Africa">Africa</option>
-                <option value="America">America</option>
-                <option value="Asia">Asia</option>
-                <option value="Europe">Europe</option>
-                <option value="Oceania">Oceania</option>
-            </select>
+            <div class="filter-container">
+                <select class="filter-by-region">
+                    <option hidden>Filter By Region</option>
+                    <option value="Africa">Africa</option>
+                    <option value="America">America</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Europe">Europe</option>
+                    <option value="Oceania">Oceania</option>
+                </select>
+                <div class="reset" title="Reset Filter">
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+            </div>
+            
         </div>
         <div class="countries-container"></div>
     </main>

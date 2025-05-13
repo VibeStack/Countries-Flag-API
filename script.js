@@ -2,8 +2,11 @@ const countriesContainer = document.querySelector(".countries-container");
 const searchFilterContainer = document.querySelector('.search-filter-container select');
 const searchInput = document.querySelector('.search-container');
 const themeChager = document.querySelector('.theme-changer');
+const resetFilter = document.querySelector('.reset');
 let allCountriesData = '';
 
+const isDark=localStorage.getItem('isDark');
+localStorage.setItem('isDark',isDark);
 
 function renderCountries(data){
     countriesContainer.innerText = "";
@@ -17,7 +20,7 @@ function renderCountries(data){
                 <h3 class="card-title">${country.name.common}</h3>
                 <p><b>Population: </b>${country.population.toLocaleString('en-IN')}</p>
                 <p><b>Region: </b>${country.region}</p>
-                <p><b>Capital: </b>${country.capital?.[0]}</p>
+                <p><b>Capital: </b>${country.capital?.[0] || "None"}</p>
             </div>
         `;
         countriesContainer.append(countryCard);
@@ -34,25 +37,37 @@ fetch("https://restcountries.com/v3.1/all")
 
 const filterByRegion = document.querySelector('.filter-by-region');
 filterByRegion.addEventListener('change',(e)=>{
-    console.log(filterByRegion.value);
     fetch(`https://restcountries.com/v3.1/region/${filterByRegion.value}`)
   .then((res) => res.json())
   .then(renderCountries);
 })
 
 searchInput.addEventListener('input',(e)=>{
-    console.log(e.target.value);
     const filteredCountries = allCountriesData.filter((country)=> country.name.common.toLowerCase().includes(e.target.value.toLowerCase()));
     renderCountries(filteredCountries);
 })
 
+resetFilter.addEventListener('click',(e)=>{
+    filterByRegion.value = 'Filter By Region';
+    fetch(`https://restcountries.com/v3.1/all`)
+  .then((res) => res.json())
+  .then(renderCountries);
+})
+
+if(isDark=='true'){
+    document.body.classList.add('dark');
+    themeChager.innerHTML = '<i class="fa-solid fa-sun"></i>&nbsp;&nbsp;Light Mode';
+}
 themeChager.addEventListener('click',()=>{
     document.body.classList.toggle('dark');
+
     const classExist = document.body.getAttribute('class');
     if(classExist=='dark'){
         themeChager.innerHTML = '<i class="fa-solid fa-sun"></i>&nbsp;&nbsp;Light Mode';
+        localStorage.setItem('isDark',true);
     }
     else{
         themeChager.innerHTML = '<i class="fa-regular fa-moon"></i>&nbsp;&nbsp;Dark Mode';
+        localStorage.setItem('isDark',false);
     }
 })
